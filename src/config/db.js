@@ -5,8 +5,9 @@ dotenv.config();
 
 const connectDB = async () => {
   try {
+    mongoose.set("strictQuery", false);
     console.log("Connecting to MongoDB...");
-    await mongoose.connect("mongodb://127.0.0.1:27017/govest");
+    const conn = await mongoose.connect(process.env.MONGODB_URI);
     console.log("MongoDB connected successfully");
   } catch (error) {
     console.error("MongoDB connection error:", error);
