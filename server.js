@@ -127,6 +127,16 @@ app.post("/api/register-company", async (req, res) => {
   res.send({ message: "Company registered successfully" });
 });
 
+app.get("/api/investor-data", (req, res) => {
+  const data = [
+    { name: "Jan", value: 400 },
+    { name: "Feb", value: 300 },
+    { name: "Mar", value: 200 },
+    // More data points
+  ];
+  res.json(data);
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

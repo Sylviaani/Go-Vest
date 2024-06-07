@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const RegisterCompany = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,7 @@ const RegisterCompany = () => {
     doc: "",
     // Add other fields as necessary
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -25,9 +27,10 @@ const RegisterCompany = () => {
         formData
       );
       if (response.data.message === "Company registered successfully") {
-        console.log("Company registered successfully");
+        // Navigate to the startup company registration page
+        navigate("/startup-dashboard");
       } else {
-        console.error("Company registration failed");
+        console.error("Registration failed");
       }
     } catch (error) {
       console.error("There was an error registering the company:", error);

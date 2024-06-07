@@ -6,6 +6,8 @@ import RegisterStartup from "./pages/RegisterStartup";
 import Login from "./components/Login";
 import RegisterCompany from "./pages/RegisterCompany";
 import HomePage from "./components/HomePage";
+import StartupDashboard from "./components/StartupDashboard";
+import InvestorDashboard from "./components/InvestorDashboard";
 
 const App = () => {
   return (
@@ -27,6 +29,8 @@ const App = () => {
           <Route path="/register-company" element={<RegisterCompany />} />
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<HomePage />} exact />
+          <Route path="/startup-dashboard" element={<StartupDashboard />} />
+          <Route path="/investor-dashboard" element={<InvestorDashboard />} />
         </Routes>
       </div>
     </Router>
