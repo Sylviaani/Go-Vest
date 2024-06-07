@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const RegisterStartup = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    password: "",
     // Add other fields as necessary
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -22,6 +25,12 @@ const RegisterStartup = () => {
         "http://localhost:3000/api/startups",
         formData
       );
+      if (response.data.message === "Startup registered successfully") {
+        // Navigate to the startup company registration page
+        navigate("/register-company");
+      } else {
+        console.error("Registration failed");
+      }
       console.log("Registration successful:", response.data);
     } catch (error) {
       console.error("There was an error registering:", error);
@@ -29,7 +38,7 @@ const RegisterStartup = () => {
   };
 
   return (
-    <div>
+    <div className="register-form">
       <h1>Register as Startup</h1>
       <form onSubmit={handleSubmit}>
         <input
@@ -46,8 +55,17 @@ const RegisterStartup = () => {
           onChange={handleChange}
           placeholder="Email"
         />
+        <input
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          maxLength={12}
+          placeholder="Password"
+          required
+        />
         {/* Add other form fields here */}
-        <button type="submit">Register</button>
+        <button onClick={handleSubmit}>Register</button>
       </form>
     </div>
   );

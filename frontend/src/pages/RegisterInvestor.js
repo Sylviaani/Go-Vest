@@ -5,6 +5,7 @@ const RegisterInvestor = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    password: "",
     // Add other fields as necessary
   });
 
@@ -29,7 +30,7 @@ const RegisterInvestor = () => {
   };
 
   return (
-    <div>
+    <div className="register-form">
       <h1>Register as Investor</h1>
       <form onSubmit={handleSubmit}>
         <input
@@ -46,8 +47,17 @@ const RegisterInvestor = () => {
           onChange={handleChange}
           placeholder="Email"
         />
+        <input
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          maxLength={12}
+          placeholder="Password"
+          required
+        />
         {/* Add other form fields here */}
-        <button type="submit">Register</button>
+        <button onClick={handleSubmit}>Register</button>
       </form>
     </div>
   );

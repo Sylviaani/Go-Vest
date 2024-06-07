@@ -3,34 +3,33 @@ import axios from "axios";
 
 const Register = () => {
   const [userType, setUserType] = useState("");
-  const [message, setMessage] = useState("");
 
   const handleRegister = async () => {
-    if (!userType) {
-      setMessage("Please select a user type");
-      return;
-    }
     try {
       const response = await axios.post("http://localhost:3000/register", {
         userType,
       });
-      setMessage(response.data.message); // Show success message
+      console.log("Registration successful:", response.data);
     } catch (error) {
-      console.error("Registration error:", error);
-      setMessage("Registration failed. Please try again.");
+      console.error("There was an error registering:", error);
     }
   };
 
   return (
-    <div>
-      <button onClick={() => setUserType("investor")}>
-        Register as Investor
-      </button>
-      <button onClick={() => setUserType("startup")}>
-        Register as Startup
-      </button>
-      <button onClick={handleRegister}>Submit</button>
-      {message && <p>{message}</p>}
+    <div id="registerType">
+      <section>
+        <div>
+          <h1>Choose your role</h1>
+          <p>You can't switch roles with the same account</p>
+          <button className="type1" onClick={() => setUserType("investor")}>
+            <a href="/register-investor">Register as Investor </a>
+          </button>
+          <button className="type2" onClick={() => setUserType("startup")}>
+            <a href="/register-startup">Register as Startup </a>
+          </button>
+          <button onClick={handleRegister}>Submit</button>
+        </div>
+      </section>
     </div>
   );
 };
